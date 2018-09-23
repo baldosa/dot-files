@@ -1,0 +1,324 @@
+[colors]
+background = #995A5983
+foreground = #333333
+linecolor = #605A5983
+bordercolor = #6C738D
+accent = #e60053
+
+[settings]
+screenchange-reload = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+#monitor 23 settings
+[bar/m23]
+enable-ipc = true
+monitor = DVI-I-1
+width = 100%
+height = 20
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-color = ${colors.linecolor}
+underline-size = 0
+overline-size = 0
+
+
+border-bottom-size = 0
+border-bottom-color = ${colors.bordercolor}
+
+padding-left = 0
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = "Wuncon Siji:pixelsize=11;1"
+font-1 = "Symbols Nerd Font:pixelsize=11;1"
+font-2 = "Inconsolata:pixelsize=11;1"
+
+tray-position = none
+
+modules-left = i3
+modules-center = xwindow
+modules-right = date power-menu
+
+wm-restack = i3
+
+;click-left =
+;click-middle =
+;click-right =
+scroll-up = i3wm-wsprev
+scroll-down = i3wm-wsnext
+;double-click-left = notify-send -u low doubleclick
+;double-click-right = notify-send -u low doubleclick2
+
+
+#monitor 24 settings
+[bar/m24]
+inherit = bar/m23
+
+enable-ipc = true
+monitor = DVI-D-0
+;monitor-fallback = eDP-1
+;bottom = true
+;override-redirect = true
+
+
+underline-size = ${bar/m23.overline-size}
+overline-size = ${bar/m23.underline-size}
+
+;border-top-size = 2
+;border-top-color = ${colors.bordercolor}
+;border-bottom-size = 0
+
+modules-left = i3
+modules-center = xwindow
+modules-right = fs-root memory cpu wired updates volume date
+
+wm-restack = ${bar/m23.wm-restack}
+
+tray-position = right
+tray-padding = 3
+tray-maxsize = 16
+tray-detached = false
+
+
+#monitor 24 settings
+[bar/mtv]
+inherit = bar/m23
+
+enable-ipc = true
+monitor = HDMI-0
+;monitor-fallback = eDP-1
+;bottom = true
+;override-redirect = true
+
+
+underline-size = ${bar/m23.overline-size}
+overline-size = ${bar/m23.underline-size}
+
+;border-top-size = 2
+;border-top-color = ${colors.bordercolor}
+;border-bottom-size = 0
+
+modules-center = xwindow
+modules-right = date
+
+wm-restack = ${bar/m23.wm-restack}
+
+tray-position = right
+tray-padding = 3
+tray-maxsize = 16
+tray-detached = false
+
+
+#modules
+[module/fs-root]
+type = internal/fs
+mount-0 = /
+label-mounted = %mountpoint% %{F#e60053}%percentage_used%%%{F-} 
+
+
+[module/i3]
+type = internal/i3
+
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = true
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = false
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+;fuzzy-match = true
+
+format = <label-state> <label-mode>
+
+; Available tokens:
+;   %mode%
+; Default: %mode%
+label-mode = %mode%
+label-mode-padding = 1
+label-mode-background = ${colors.accent}
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %name%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.bordercolor}
+label-focused-underline = ${colors.linecolor}
+label-focused-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-unfocused = %name%
+label-unfocused-padding = 1
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-visible = %name%
+label-visible-underline = ${colors.foreground}
+label-visible-padding = 1
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-urgent = %name%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-background = ${colors.accent}
+label-urgent-padding = 1
+
+; Separator in between workspaces
+label-separator = |
+label-separator-padding = 1
+label-separator-foreground = ${colors.foreground}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label = %percentage%%
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+
+[module/memory]
+type = internal/memory
+interval = 2
+label = %percentage_used%%
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+
+[module/wired]
+type = internal/network
+interface = eno1
+interval = 3.0
+
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground}
+label-connected = %downspeed:9%
+
+
+;format-disconnected = <label-disconnected>
+;format-disconnected-prefix = " "
+;format-disconnected-prefix-foreground = #666
+;label-disconnected = not connected
+;label-disconnected-foreground = #999
+
+[module/date]
+type = internal/date
+label = %{F#666}%{F-} %date%  %{F#e60053}%{F-} %time%
+date = %Y-%m-%d
+time = %H:%M
+interval = 5
+
+[module/volume]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+use-ui-max = true
+interval = 3
+label-active-font = 2
+
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
+
+;format-muted-prefix = ""
+format-muted-foreground = ${colors.foreground}
+label-muted = 🔇 muted
+
+ramp-volume-0 = %{F#666}🔈%{F-}
+ramp-volume-1 = %{F#666}🔉%{F-}
+ramp-volume-2 = %{F#666}🔊%{F-}
+
+ramp-volume-foreground = ${colors.foreground}
+
+[module/power-menu]
+type = custom/menu
+
+label-open = 
+label-close = 
+label-separator = /
+label-separator-margin = 1
+
+menu-0-0 = Terminate WM
+menu-0-0-foreground = ${colors.accent}
+menu-0-0-exec = i3-msg exit
+menu-0-1 = Reboot
+menu-0-1-foreground = ${colors.accent}
+menu-0-1-exec = menu-open-1
+menu-0-2 = Power off
+menu-0-2-foreground = ${colors.accent}
+menu-0-2-exec = menu-open-2
+menu-0-3 = Lock
+menu-0-3-foreground = ${colors.accent}
+menu-0-3-exec = i3lock-fancy && systemctl suspend
+
+menu-1-0 = Cancel
+menu-1-0-foreground = ${colors.accent}
+menu-1-0-exec = menu-open-0
+menu-1-1 = Reboot
+menu-1-1-foreground = ${colors.accent}
+menu-1-1-exec = systemctl reboot
+
+menu-2-0 = Power off
+menu-2-0-foreground = ${colors.accent}
+menu-2-0-exec = systemctl poweroff
+menu-2-1 = Cancel
+menu-2-1-foreground = ${colors.accent}
+menu-2-1-exec = menu-open-0
+
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+label-maxlen = 75
+
+[module/counter]
+type = internal/counter
+format = <counter>
+interval = 0.1
+
+[module/updates]
+type = custom/script
+exec = ~/dot-files/update.sh
+interval = 600
