@@ -22,16 +22,6 @@ MPV_DIR="$HOME/.config/mpv"
 MPV="$HOME/.config/mpv/mpv.conf"
 EASYSTROKE="$HOME/.easystroke"
 
-echo $I3CONFIG
-echo $I3CONFIG_DIR
-echo $DUNSTRC
-echo $ZSHRC
-echo $XRESOURCES
-echo $POLYBAR
-echo $POLYBAR_DIR
-echo $MPV
-echo $EASYSTROKE
-
 if [ -d "$I3CONFIG_DIR"  ] || [ -d "$I3CONFIG"  ] ; then
 	rm -rf "$I3CONFIG_DIR"
 fi
@@ -72,3 +62,5 @@ ln -s $HOME/dot-files/.Xresources $XRESOURCES
 ln -s $HOME/dot-files/.mpv $MPV
 ln -s $HOME/dot-files/.easystroke $EASYSTROKE
 ln -s $HOME/dot-files/.polybar $POLYBAR
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

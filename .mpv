@@ -6,4 +6,4 @@ sub-border-size=3.2
 sub-shadow-offset=1
 sub-shadow-color="#33000000"
 sub-spacing=0.5
-
+A cycle-values video-aspect "16:9" "4:3" "2.35:1" "-1"

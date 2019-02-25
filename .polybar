@@ -320,5 +320,5 @@ interval = 0.1
 
 [module/updates]
 type = custom/script
-exec = ~/dot-files/update.sh
+exec = ~/dot-files/checkupdate.sh
 interval = 600

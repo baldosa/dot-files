@@ -209,12 +209,14 @@ bindsym XF86AudioLowerVolume exec ~/dot-files/volume.sh down
 bindsym XF86AudioMute        exec ~/dot-files/volume.sh mute
 
 #scrot
-bindsym Print exec scrot ~/screenshots/%Y-%m-%d-%T-screenshot.png
+bindsym --release Print exec --no-startup-id maim ~/screenshots/$(date +%s)-screenshot.png -s
+bindsym $mod+Print exec maim ~/screenshots/$(date +%s)-screenshot.png
+bindsym Shift+Print exec maim -s | xclip -selection clipboard -t image/png
 
 #polybar
 exec_always --no-startup-id $HOME/dot-files/start-polybar.sh
 #wallpaper
-exec --no-startup-id sh ~/dot-files/wallpaper.sh
+exec --no-startup-id sh $HOME/dot-files/wallpaper.sh
 #compton
 exec --no-startup-id compton
 
@@ -227,10 +229,12 @@ exec --no-startup-id compton
 exec --no-startup-id easystroke
 exec chromium --new-window "web.whatsapp.com"
 exec chromium --new-window "facebook.com"
-exec --no-startup-id xautolock -time 10 -locker "i3lock-fancy -f Inconsolata-Regular"
-
+#exec --no-startup-id xautolock -time 10 -locker "i3lock-fancy -f Inconsolata-Regular"
+exec --no-startup-id redshift
 
 # assign program to workspace
-assign [class="Alacritty"]          → $ws1
-assign [class="terminal"]           → $ws1
-assign [class="Sublime"]            → $ws2
+assign [title="Friends List"] → $ws4
+assign [title="Steam"] → $ws4
+assign [title="WhatsApp - Chromium"] → $ws2
+assign [title="Facebook - Chromium"]  → $ws2
+assign [class="mpv"] → $ws6
