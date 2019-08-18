@@ -1,9 +1,9 @@
 [colors]
-background = #995A5983
-foreground = #333333
+background = #000000
+foreground = #CCCCCC
 linecolor = #605A5983
 bordercolor = #6C738D
-accent = #e60053
+accent = #a9a9a9
 
 [settings]
 screenchange-reload = true
@@ -15,9 +15,8 @@ margin-bottom = 0
 #monitor 23 settings
 [bar/m23]
 enable-ipc = true
-monitor = DVI-I-1
 width = 100%
-height = 20
+height = 14
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -35,11 +34,11 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = "Wuncon Siji:pixelsize=11;1"
-font-1 = "Symbols Nerd Font:pixelsize=11;1"
-font-2 = "Inconsolata:pixelsize=11;1"
+font-0 = "Wuncon Siji:pixelsize=9;1"
+font-1 = "Symbols Nerd Font:pixelsize=9;1"
+font-2 = "Inconsolata:pixelsize=9;1"
 
-tray-position = none
+tray-position = right
 
 modules-left = i3
 modules-center = xwindow
@@ -61,7 +60,6 @@ scroll-down = i3wm-wsnext
 inherit = bar/m23
 
 enable-ipc = true
-monitor = DVI-D-0
 ;monitor-fallback = eDP-1
 ;bottom = true
 ;override-redirect = true
@@ -76,7 +74,7 @@ overline-size = ${bar/m23.underline-size}
 
 modules-left = i3
 modules-center = xwindow
-modules-right = fs-root memory cpu wired updates volume date
+modules-right = fs-root memory cpu volume battery date
 
 wm-restack = ${bar/m23.wm-restack}
 
@@ -91,7 +89,6 @@ tray-detached = false
 inherit = bar/m23
 
 enable-ipc = true
-monitor = HDMI-0
 ;monitor-fallback = eDP-1
 ;bottom = true
 ;override-redirect = true
@@ -218,24 +215,15 @@ label-separator-foreground = ${colors.foreground}
 type = internal/cpu
 interval = 2
 label = %percentage%%
-format-prefix = " "
+format-prefix = "CPU "
 format-prefix-foreground = ${colors.foreground}
 
 [module/memory]
 type = internal/memory
 interval = 2
 label = %percentage_used%%
-format-prefix = " "
+format-prefix = "RAM "
 format-prefix-foreground = ${colors.foreground}
-
-[module/wired]
-type = internal/network
-interface = eno1
-interval = 3.0
-
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground}
-label-connected = %downspeed:9%
 
 
 ;format-disconnected = <label-disconnected>
@@ -246,7 +234,7 @@ label-connected = %downspeed:9%
 
 [module/date]
 type = internal/date
-label = %{F#666}%{F-} %date%  %{F#e60053}%{F-} %time%
+label = %{F#666} %{F-} %date%  %{F#e60053} %{F-} %time%
 date = %Y-%m-%d
 time = %H:%M
 interval = 5
@@ -265,19 +253,19 @@ label-volume-foreground = ${colors.foreground}
 
 ;format-muted-prefix = ""
 format-muted-foreground = ${colors.foreground}
-label-muted = 🔇 muted
+label-muted = muted
 
-ramp-volume-0 = %{F#666}🔈%{F-}
-ramp-volume-1 = %{F#666}🔉%{F-}
-ramp-volume-2 = %{F#666}🔊%{F-}
+ramp-volume-0 = %{F#666}%{F-}
+ramp-volume-1 = %{F#666}%{F-}
+ramp-volume-2 = %{F#666}%{F-}
 
 ramp-volume-foreground = ${colors.foreground}
 
 [module/power-menu]
 type = custom/menu
 
-label-open = 
-label-close = 
+label-open = O
+label-close = X
 label-separator = /
 label-separator-margin = 1
 
@@ -318,7 +306,29 @@ type = internal/counter
 format = <counter>
 interval = 0.1
 
-[module/updates]
-type = custom/script
-exec = ~/dot-files/checkupdate.sh
-interval = 600
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+label-full = %percentage%
+
+ramp-capacity-0 = 
+ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-1 = 
+ramp-capacity-1-foreground = ${colors.warning}
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 750

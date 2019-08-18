@@ -4,4 +4,4 @@
 #  sleep 3600
 #done
 
-feh --bg-scale --no-xinerama ~/dot-files/wallpapers/colors.jpg
+feh --bg-scale --no-xinerama ~/dot-files/wallpapers/astronaut.jpg
