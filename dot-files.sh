@@ -50,7 +50,7 @@ if [ -d "$EASYSTROKE"  ] ; then
 	rm -rf "$EASYSTROKE"
 fi
 
-
+mkdir ~/.config
 mkdir $I3CONFIG_DIR
 mkdir $POLYBAR_DIR
 mkdir $MPV_DIR
@@ -62,5 +62,6 @@ ln -s $HOME/dot-files/.Xresources $XRESOURCES
 ln -s $HOME/dot-files/.mpv $MPV
 ln -s $HOME/dot-files/.easystroke $EASYSTROKE
 ln -s $HOME/dot-files/.polybar $POLYBAR
-
+ln -s $HOME/dot-files/.xinitrc ~/.xinitrc
+ln -s $HOME/dot-files/.zprofile ~/.zprofile
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

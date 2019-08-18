@@ -1,0 +1,2 @@
+#xrb ~/.Xresources &
+i3 &
